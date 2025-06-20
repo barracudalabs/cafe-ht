@@ -66,11 +66,11 @@ export default function VisitorsCharts({ data }) {
   }));
 
   return (
-    <div className="grid md:grid-cols-3 gap-8 mt-10">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-10">
       {/* Visitors by Hour */}
-      <div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded-xl shadow-md">
-        <h3 className="text-lg font-semibold mb-2">
-           Visitors by Hour (9AM–11PM)
+      <div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded-xl shadow-md w-full max-w-full">
+        <h3 className="text-sm md:text-base font-semibold mb-2">
+          Visitors by Hour (9AM–11PM)
         </h3>
         <ResponsiveContainer width="100%" height={250}>
           <BarChart data={hourlyCounts}>
@@ -83,9 +83,11 @@ export default function VisitorsCharts({ data }) {
         </ResponsiveContainer>
       </div>
 
-      {/* Gender Pie Chart */}
-      <div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded-xl shadow-md">
-        <h3 className="text-lg font-semibold mb-2"> Gender Distribution</h3>
+      {/* Gender Distribution */}
+      <div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded-xl shadow-md w-full max-w-full">
+        <h3 className="text-sm md:text-base font-semibold mb-2">
+          Gender Distribution
+        </h3>
         <ResponsiveContainer width="100%" height={250}>
           <PieChart>
             <Pie
@@ -105,9 +107,11 @@ export default function VisitorsCharts({ data }) {
         </ResponsiveContainer>
       </div>
 
-      {/* Age Group Bar Chart */}
-      <div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded-xl shadow-md">
-        <h3 className="text-lg font-semibold mb-2"> Age Group Distribution</h3>
+      {/* Age Group Distribution */}
+      <div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded-xl shadow-md w-full max-w-full">
+        <h3 className="text-sm md:text-base font-semibold mb-2">
+          Age Group Distribution
+        </h3>
         <ResponsiveContainer width="100%" height={250}>
           <BarChart data={ageData}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -119,10 +123,10 @@ export default function VisitorsCharts({ data }) {
         </ResponsiveContainer>
       </div>
 
-      {/* Customer Every 2 Hours (Line Chart) */}
-      <div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded-xl shadow-md md:col-span-3">
-        <h3 className="text-lg font-semibold mb-2">
-           Customers Every 2 Hours
+      {/* Customers Every 2 Hours */}
+      <div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded-xl shadow-md col-span-1 sm:col-span-2 md:col-span-3 w-full max-w-full">
+        <h3 className="text-sm md:text-base font-semibold mb-2">
+          Customers Every 2 Hours
         </h3>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={twoHourData}>

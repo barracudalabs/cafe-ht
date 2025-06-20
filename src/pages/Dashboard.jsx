@@ -10,7 +10,6 @@ export default function Dashboard() {
   const [filteredData, setFilteredData] = useState([]);
   const [selectedDate, setSelectedDate] = useState(() => new Date());
 
-  // Fetch data from Supabase REST API
   useEffect(() => {
     async function fetchData() {
       try {
@@ -21,12 +20,9 @@ export default function Dashboard() {
           },
         });
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch data from Supabase REST API.");
-        }
+        if (!res.ok) throw new Error("Failed to fetch data from Supabase REST API.");
 
         const data = await res.json();
-        console.log("Fetched via REST API:", data);
         setVisitorData(data);
       } catch (error) {
         console.error("Error fetching from Supabase REST:", error.message);
@@ -38,7 +34,6 @@ export default function Dashboard() {
     return () => clearInterval(interval);
   }, []);
 
-  // Filter visitor data by selected date
   useEffect(() => {
     const filtered = visitorData.filter((item) => {
       const rawTime = item.timestamp || item.createdat || item.created_at;
@@ -57,25 +52,33 @@ export default function Dashboard() {
   }, [visitorData, selectedDate]);
 
   return (
-    <div className="p-4 bg-white dark:bg-gray-900 min-h-screen dark:text-white">
+    <div className="p-4 sm:p-6 md:p-8 bg-white dark:bg-gray-900 min-h-screen dark:text-white">
       {/* Header with Clock and Date Picker */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <h1 className="text-2xl font-bold">Dashboard Overview</h1>
-        <div className="flex gap-4 items-center">
+      <div className="flex flex-col lg:flex-row justify-between gap-4 mb-6">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold">Dashboard Overview</h1>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
           <Clock />
           <input
             type="date"
-            className="border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white p-2 rounded shadow"
+            className="border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white p-2 rounded shadow text-sm sm:text-base"
             value={format(selectedDate, "yyyy-MM-dd")}
             onChange={(e) => setSelectedDate(new Date(e.target.value))}
           />
         </div>
       </div>
 
-      {/* Data components */}
-      <StatCards data={filteredData} />
-      <VisitorsTable data={filteredData} />
-      <VisitorsCharts data={filteredData} />
+      {/* Responsive Data Sections */}
+      <section className="mb-8">
+        <StatCards data={filteredData} />
+      </section>
+
+      <section className="mb-8">
+        <VisitorsTable data={filteredData} />
+      </section>
+
+      <section>
+        <VisitorsCharts data={filteredData} />
+      </section>
     </div>
   );
 }
