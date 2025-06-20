@@ -38,7 +38,7 @@ export default function ExportData() {
     if (!data.length) return alert("No data to download.");
 
     const csv = [
-      Object.keys(data[0]).join(","), // headers
+      Object.keys(data[0]).join(","),
       ...data.map((row) =>
         Object.values(row)
           .map((val) => `"${val}"`)
@@ -56,43 +56,43 @@ export default function ExportData() {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-2xl font-bold"> DOWNLOAD CENTER</h1>
-      <p className="text-gray-600 mb-6">
+    <div className="p-6 bg-gray-50 dark:bg-gray-900 min-h-screen dark:text-white">
+      <h1 className="text-2xl font-bold">DOWNLOAD CENTER</h1>
+      <p className="text-gray-600 dark:text-gray-300 mb-6">
         Logging, Camera-Based Visitors Analytics for Smart Cafe
       </p>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-6 max-w-3xl">
+      <div className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow p-6 max-w-3xl">
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Select Data Source
           </label>
-          <select className="mt-1 block w-full p-2 border rounded" disabled>
+          <select className="mt-1 block w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" disabled>
             <option value="visitors">Visitors</option>
           </select>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4 mb-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Start Date & Time (UTC+8)
             </label>
             <input
               type="datetime-local"
-              className="mt-1 block w-full p-2 border rounded"
+              className="mt-1 block w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               End Date & Time (UTC+8)
             </label>
             <input
               type="datetime-local"
-              className="mt-1 block w-full p-2 border rounded"
+              className="mt-1 block w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
             />
@@ -110,14 +110,14 @@ export default function ExportData() {
       {/* Display fetched results */}
       <div className="mt-10">
         {data.length === 0 ? (
-          <p className="text-gray-500 text-center">No data to display.</p>
+          <p className="text-gray-500 dark:text-gray-400 text-center">No data to display.</p>
         ) : (
           <div className="overflow-auto">
-            <table className="w-full text-sm text-left mt-4 border">
-              <thead className="bg-gray-100 text-gray-700 font-semibold">
+            <table className="w-full text-sm text-left mt-4 border dark:border-gray-700 dark:text-white">
+              <thead className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold">
                 <tr>
                   {Object.keys(data[0]).map((key) => (
-                    <th key={key} className="p-2 border">
+                    <th key={key} className="p-2 border dark:border-gray-600">
                       {key}
                     </th>
                   ))}
@@ -125,9 +125,9 @@ export default function ExportData() {
               </thead>
               <tbody>
                 {data.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-gray-50">
+                  <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-gray-800 border-b dark:border-gray-700">
                     {Object.values(row).map((val, i) => (
-                      <td key={i} className="p-2 border">
+                      <td key={i} className="p-2 border dark:border-gray-700">
                         {val?.toString()}
                       </td>
                     ))}

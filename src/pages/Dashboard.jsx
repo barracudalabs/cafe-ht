@@ -3,6 +3,7 @@ import { format, isSameDay } from "date-fns";
 import StatCards from "../components/StatCards";
 import VisitorsTable from "../components/VisitorsTable";
 import VisitorsCharts from "../components/VisitorsCharts";
+import Clock from "../components/Clock";
 
 export default function Dashboard() {
   const [visitorData, setVisitorData] = useState([]);
@@ -40,7 +41,7 @@ export default function Dashboard() {
   // Filter visitor data by selected date
   useEffect(() => {
     const filtered = visitorData.filter((item) => {
-      const rawTime = item.timestamp || item.timestamp || item.createdat || item.created_at;
+      const rawTime = item.timestamp || item.createdat || item.created_at;
       if (!rawTime) return false;
 
       try {
@@ -56,16 +57,19 @@ export default function Dashboard() {
   }, [visitorData, selectedDate]);
 
   return (
-    <div className="p-4">
-      {/* Header with date picker */}
+    <div className="p-4 bg-white dark:bg-gray-900 min-h-screen dark:text-white">
+      {/* Header with Clock and Date Picker */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <h1 className="text-2xl font-bold">📊 Dashboard Overview</h1>
-        <input
-          type="date"
-          className="border p-2 rounded shadow"
-          value={format(selectedDate, "yyyy-MM-dd")}
-          onChange={(e) => setSelectedDate(new Date(e.target.value))}
-        />
+        <h1 className="text-2xl font-bold">Dashboard Overview</h1>
+        <div className="flex gap-4 items-center">
+          <Clock />
+          <input
+            type="date"
+            className="border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white p-2 rounded shadow"
+            value={format(selectedDate, "yyyy-MM-dd")}
+            onChange={(e) => setSelectedDate(new Date(e.target.value))}
+          />
+        </div>
       </div>
 
       {/* Data components */}
