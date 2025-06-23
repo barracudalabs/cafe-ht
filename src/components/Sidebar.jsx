@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/Logo Hidrokinetik.jpg"; // Sesuaikan path dengan projek anda
-
+import logo from "../assets/Logo Hidrokinetik.jpg"; 
 export default function Sidebar() {
   const location = useLocation();
 
