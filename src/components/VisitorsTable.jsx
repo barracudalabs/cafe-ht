@@ -2,7 +2,7 @@ export default function VisitorsTable({ data }) {
   return (
     <div className="mt-8">
       <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4 dark:text-white">
-         Visitor Log
+        Visitor Log
       </h2>
 
       <div className="overflow-x-auto rounded-xl shadow-md">
@@ -16,21 +16,23 @@ export default function VisitorsTable({ data }) {
             </tr>
           </thead>
           <tbody>
-            {data.map((row) => (
-              <tr
-                key={row.id}
-                className="border-b dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-              >
-                <td className="p-3 font-mono text-xs sm:text-sm">
-                  {row.id}
-                </td>
-                <td className="p-3">{row.age}</td>
-                <td className="p-3">{row.gender}</td>
-                <td className="p-3 text-sm sm:text-base">
-                  {row.timestamp || row.createdat}
-                </td>
-              </tr>
-            ))}
+            {[...data]
+              .sort((a, b) => Number(a.id) - Number(b.id))
+              .map((row) => (
+                <tr
+                  key={row.id}
+                  className="border-b dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <td className="p-3 font-mono text-xs sm:text-sm">
+                    {row.id}
+                  </td>
+                  <td className="p-3">{row.age}</td>
+                  <td className="p-3">{row.gender}</td>
+                  <td className="p-3 text-sm sm:text-base">
+                    {row.timestamp || row.createdat}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
