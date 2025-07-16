@@ -32,18 +32,11 @@ export default function VisitorsCharts({ data }) {
     { name: "Female", value: data.filter((d) => d.gender === "Female").length },
   ];
 
-  const ageRanges = [
-    { name: "0–10", min: 0, max: 10 },
-    { name: "11–20", min: 11, max: 20 },
-    { name: "21–30", min: 21, max: 30 },
-    { name: "31–40", min: 31, max: 40 },
-    { name: "41–50", min: 41, max: 50 },
-    { name: "51+", min: 51, max: 120 },
-  ];
-
-  const ageData = ageRanges.map((range) => ({
-    name: range.name,
-    count: data.filter((d) => d.age >= range.min && d.age <= range.max).length,
+  // 👇 Updated for string-based age groups
+  const ageGroups = ["10-19", "20-29", "30-39", "40-49", "50-59"];
+  const ageData = ageGroups.map((group) => ({
+    name: group,
+    count: data.filter((d) => d.age === group).length,
   }));
 
   const intervals = [
@@ -107,7 +100,7 @@ export default function VisitorsCharts({ data }) {
         </ResponsiveContainer>
       </div>
 
-      {/* Age Group Distribution */}
+      {/* Age Group Distribution (Updated) */}
       <div className="bg-white dark:bg-gray-800 dark:text-white p-4 rounded-xl shadow-md w-full max-w-full">
         <h3 className="text-sm md:text-base font-semibold mb-2">
           Age Group Distribution

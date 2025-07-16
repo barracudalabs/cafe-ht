@@ -27,7 +27,7 @@ export default function VisitorsTable({ data }) {
                 <td className="p-3">{row.age}</td>
                 <td className="p-3">{row.gender}</td>
                 <td className="p-3 text-sm sm:text-base">
-                  {new Date(row.timestamp || row.createdat).toLocaleString()}
+                  {row.timestamp || row.createdat}
                 </td>
               </tr>
             ))}
